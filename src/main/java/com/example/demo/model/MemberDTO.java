@@ -10,15 +10,19 @@ import java.util.List;
 @Entity
 @Getter @Setter
 @Table(name = "member")
-public class MemberDTO { // 회원 데이터 클래스
+public class MemberDTO { // 회원 클래스
     @Id @GeneratedValue // @GeneratedValue : 자동 생성 => 시퀀스 값 같은
     @Column(name = "member_id")
     private Long id; // 임의로 사용할 키값
     @Column(name = "student_id")
     private Long studentId; // 학번
     private String name; // 회원 이름
+    @Enumerated(EnumType.STRING) // 데이터값을 int가 아닌 String으로 나오게 함
     private Access access; // 주어질 권한
+    @Enumerated(EnumType.STRING) // 데이터값을 int가 아닌 String으로 나오게 함
     private Login login; // 주어질 권한
-    @OneToMany
+    @OneToMany(mappedBy = "member") // mappedBy : 연관관계 주인이 누구인지 상태 테이블 속성이름으로 명시해줌
     private List<BoardDTO> board = new ArrayList<>();
+    @OneToOne
+    private TimetableDTO timetable;
 }
