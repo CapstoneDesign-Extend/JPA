@@ -18,7 +18,7 @@ public class BoardDTO { // 게시판 클래스
     private int id;
     private String title; // 제목
     private String content; // 본문
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.LAZY) // fetch=FetchType.LAZY : 지연 로딩으로 실시간 업로딩 되는 것을 막음
     @JoinColumn(name = "member_id") // 외래키 => 조인할 속성 이름
     private MemberDTO member; // 해당 멤버의 학번을 사용할 거임
     @Column(name = "view_count")
@@ -28,4 +28,5 @@ public class BoardDTO { // 게시판 클래스
     private Kind kind; // 게시판 종류
     @OneToMany(mappedBy = "board") // mappedBy : 연관관계 주인이 누구인지 상태 테이블 속성이름으로 명시해줌
     private List<CommentDTO> comments = new ArrayList<>();
+
 }
