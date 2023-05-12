@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.example.demo.domain;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -6,7 +6,6 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -15,10 +14,10 @@ import java.util.List;
 public class BoardDTO { // 게시판 클래스
     @Id @GeneratedValue // 자동 생성 => 시퀀스
     @Column(name = "border_id")
-    private int id;
+    private Long id;
     private String title; // 제목
     private String content; // 본문
-    @ManyToOne(fetch=FetchType.LAZY) // fetch=FetchType.LAZY : 지연 로딩으로 실시간 업로딩 되는 것을 막음
+    @ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.ALL) // fetch=FetchType.LAZY : 지연 로딩으로 실시간 업로딩 되는 것을 막음
     @JoinColumn(name = "member_id") // 외래키 => 조인할 속성 이름
     private MemberDTO member; // 해당 멤버의 학번을 사용할 거임
     @Column(name = "view_count")

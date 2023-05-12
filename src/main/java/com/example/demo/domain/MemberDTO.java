@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.example.demo.domain;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -23,7 +23,10 @@ public class MemberDTO { // 회원 클래스
     private Login login; // 주어질 권한
     @OneToMany(mappedBy = "member") // mappedBy : 연관관계 주인이 누구인지 상태 테이블 속성이름으로 명시해줌
     private List<BoardDTO> board = new ArrayList<>();
-    @OneToOne(fetch=FetchType.LAZY) // fetch=FetchType.LAZY : 지연 로딩으로 실시간 업로딩 되는 것을 막음
-    @JoinColumn(name = "time_id") // TimetableDTO 테이블에 PK와 연결
-    private TimetableDTO timetable;
+    @OneToMany(mappedBy = "member") // mappedBy : 연관관계 주인이 누구인지 상태 테이블 속성이름으로 명시해줌
+    private List<CommentDTO> comments = new ArrayList<>();
+    @OneToMany(mappedBy = "member")
+    private List<TimetableDTO> timetable = new ArrayList<>(); // 한 명의 사용자는 여러 시간표를 가질 수 있음
+    @OneToMany(mappedBy = "member") 
+    private List<NotificationDTO> notifications = new ArrayList<>(); // 한 명의 사용자는 여러 알림을 받음
 }
