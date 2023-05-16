@@ -19,10 +19,10 @@ public class TimetableDTO { // 시간표
     private Long id;
     @Column(name = "every_day")
     private String day; // 요일
-    private LocalDateTime year; // 연도
+    private int year; // 연도
     private int semester; // 학기 => 1학기 or 2학기
     private String schedule; // 일정 => 저장할 스케쥴
-    @ManyToOne(fetch = FetchType.LAZY) // fetch=FetchType.LAZY : 지연 로딩으로 실시간 업로딩 되는 것을 막음
-    @JoinColumn(name = "member_id")
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL) // fetch=FetchType.LAZY : 지연 로딩으로 실시간 업로딩 되는 것을 막음, cascade : 한 번의 조인
+    @JoinColumn(name = "member_id") // 외래키 설정
     private MemberDTO member; // 한 명의 사용자는 여러 시간표를 가질 수 있음
 }
