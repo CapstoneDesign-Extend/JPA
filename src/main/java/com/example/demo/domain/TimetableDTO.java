@@ -19,7 +19,7 @@ public class TimetableDTO { // 시간표
     private Long id;
     @Column(name = "every_day")
     private String day; // 요일
-    private int year; // 연도
+    private int schedule_year; // 연도
     private int semester; // 학기 => 1학기 or 2학기
     private String schedule; // 일정 => 저장할 스케쥴
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL) // fetch=FetchType.LAZY : 지연 로딩으로 실시간 업로딩 되는 것을 막음, cascade : 한 번의 조인
