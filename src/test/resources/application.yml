@@ -1,0 +1,19 @@
+spring: # 스프링부트에선 기본적으로 메모리 안에서 돌롬
+#  datasource:
+#    url: jdbc:h2:mem:test # 메모리 안에서 테스트가 진행되게 위치 변경해줌
+#    username: sa # 사용자명
+#    password: 1234 # 패스워드
+#    driver-class-name: org.h2.Driver
+
+#  jpa:
+#    hibernate:
+#      ddl-auto: create # 실행 시킬 때마다 테이블을 삭제 후 생성함
+#    properties:
+#      hibernate:
+#      # show_sql: true # System.out을 통해
+#        format_sql: true # 콘솔에 sql 쿼리문 출력
+
+logging.level:
+  org.hibernate.SQL: debug # JPA와 하이버네이트가 생성한 쿼리가 다 보이게 함 # log를 통해
+  org.hibernate.type: trace #스프링 부트 2.x, hibernate5
+# org.hibernate.orm.jdbc.bind: trace #스프링 부트 3.x, hibernate6

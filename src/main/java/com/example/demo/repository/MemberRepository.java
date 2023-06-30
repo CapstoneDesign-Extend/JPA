@@ -22,7 +22,7 @@ public class MemberRepository {
 
     public void save(MemberDTO member){
         em.persist(member);
-    }
+    } // 멤버 저장
     public MemberDTO findOne(Long id){
         return em.find(MemberDTO.class, id); // 해당 id로 member을 찾아줌
     }
