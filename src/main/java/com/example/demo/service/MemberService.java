@@ -5,8 +5,9 @@ import com.example.demo.repository.MemberRepository;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.stereotype.Service;
+
 
 import java.util.List;
 
@@ -31,7 +32,8 @@ public class MemberService {
         return member.getId();
     }
     /**
-     *  회원 가입 시 예외 처리
+     *  회원 가입 시 예외 처리(중복회원 처리)
+     *  join 메소드에서 만약 중복 회원이 있을 시 validateDuplicateMember 메소드에서 예외처리 해줌
      */
     private void validateDuplicateMember(MemberDTO member) { // 만약 중복 회원이 있으면 예외 처리
         List<MemberDTO> findMembers = memberRepository.findByStudentId(member.getStudentId());
