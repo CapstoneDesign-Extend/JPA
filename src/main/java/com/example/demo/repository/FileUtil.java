@@ -41,7 +41,7 @@ public class FileUtil { // 파일 데이터를 읽어오는 클래스
         return outputStream.toByteArray();
     }
 
-    public static String getFileName(String filePath) {
+    public static String getFileName(String filePath) { // 파일 이름 추출
         File file = new File(filePath);
         String fileName = file.getName();
         int dotIndex = fileName.lastIndexOf(".");
@@ -51,7 +51,7 @@ public class FileUtil { // 파일 데이터를 읽어오는 클래스
         return fileName;
     }
 
-    public static String getFileExtension(String filePath) {
+    public static String getFileExtension(String filePath) { // 파일 확장자 추출
         File file = new File(filePath);
         String fileName = file.getName();
         int dotIndex = fileName.lastIndexOf(".");

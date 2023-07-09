@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity
 @Getter @Setter
 @Table(name = "file_table")
-public class FileDTO {
+public class File {
     @Id
     @GeneratedValue
     @Column(name = "file_id")
@@ -23,5 +23,9 @@ public class FileDTO {
     @Lob // 대용량 데이터 매핑 시 필요 ex) BOLB 형식
     private byte[] fileData; // 파일에 대한 데이터로 파일의 내용을 바이트 배열로 변환한 데이터가 저장됨
 
-    // Getter, Setter, 생성자 등을 구현합니다.
+    @ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.ALL) // fetch=FetchType.LAZY : 지연 로딩으로 실시간 업로딩 되는 것을 막음
+    @JoinColumn(name = "files") // 외래키 => 조인할 속성 이름
+    private Board board;
+
+
 }

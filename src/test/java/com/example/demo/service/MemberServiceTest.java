@@ -1,12 +1,11 @@
 package com.example.demo.service;
 
-import com.example.demo.domain.MemberDTO;
+import com.example.demo.domain.Member;
 import com.example.demo.repository.MemberRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,7 +24,7 @@ public class MemberServiceTest {
 //    @Rollback(value = false) // db에 잘 들어가나 확인하기 위해 rollback을 없애줌
     public void 회원가입() throws Exception{
         // given
-        MemberDTO member = new MemberDTO();
+        Member member = new Member();
         member.setName("재원");
         // when
         Long savaId = memberService.join(member);
@@ -36,9 +35,9 @@ public class MemberServiceTest {
     @Test(expected = IllegalStateException.class) // try-catch문을 지울 수 있게 함
     public void 중복_회원_예외() throws Exception{
         // given
-        MemberDTO member = new MemberDTO();
+        Member member = new Member();
         member.setName("재원");
-        MemberDTO member2 = new MemberDTO();
+        Member member2 = new Member();
         member2.setName("재원");
 
         // when

@@ -1,10 +1,8 @@
 package com.example.demo.service;
 
-import com.example.demo.domain.MemberDTO;
+import com.example.demo.domain.Member;
 import com.example.demo.repository.MemberRepository;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +24,7 @@ public class MemberService {
      *  회원 가입
      */
     @Transactional // 데이터 변경 시 트렌젝션 안에서 진행됨
-    public Long join(MemberDTO member){
+    public Long join(Member member){
         validateDuplicateMember(member); // 중복 회원 검증
         memberRepository.save(member);
         return member.getId();
@@ -35,8 +33,8 @@ public class MemberService {
      *  회원 가입 시 예외 처리(중복회원 처리)
      *  join 메소드에서 만약 중복 회원이 있을 시 validateDuplicateMember 메소드에서 예외처리 해줌
      */
-    private void validateDuplicateMember(MemberDTO member) { // 만약 중복 회원이 있으면 예외 처리
-        List<MemberDTO> findMembers = memberRepository.findByStudentId(member.getStudentId());
+    private void validateDuplicateMember(Member member) { // 만약 중복 회원이 있으면 예외 처리
+        List<Member> findMembers = memberRepository.findByStudentId(member.getStudentId());
         if(!findMembers.isEmpty()){ // 해당 결과값 문자열 길이가 0이 아니면
             throw new IllegalStateException("이미 존재하는 회원입니다."); // 이미 존재하는 학번임
         }
@@ -45,13 +43,13 @@ public class MemberService {
     /**
      *  회원 전체 조회
      */
-    public List<MemberDTO> findMembers(){
+    public List<Member> findMembers(){
         return memberRepository.findAll();
     }
     /**
      *  회원 단권 조회
      */
-    public MemberDTO findOne(Long memberId){
+    public Member findOne(Long memberId){
         return memberRepository.findOne(memberId);
     }
 }
