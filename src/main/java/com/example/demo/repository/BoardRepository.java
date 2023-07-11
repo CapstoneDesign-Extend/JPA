@@ -1,7 +1,6 @@
 package com.example.demo.repository;
 
 import com.example.demo.domain.Board;
-import com.example.demo.domain.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -11,7 +10,7 @@ import java.util.List;
 
 @Repository // 자동으로 스프링 bean으로 사용됨
 @RequiredArgsConstructor
-public class BoardReposiroty {
+public class BoardRepository {
 
     @PersistenceContext // EntityManager를 주입받기 위해 사용
     private final EntityManager em;
