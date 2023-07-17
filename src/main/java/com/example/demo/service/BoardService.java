@@ -10,4 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor // 현재 클래스가 가지고 있는 필드 중 private final 필드만을 가지고 생성자를 만들어줌
 public class BoardService {
 
+
+
 }

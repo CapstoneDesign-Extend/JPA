@@ -11,6 +11,10 @@ import java.util.List;
 @Repository // 자동으로 스프링 bean으로 사용됨
 @RequiredArgsConstructor
 public class BoardRepository {
+    // 1. 게시글 생성 -> 각각 알맞은 게시판 속성 저장
+    // 2. 게시글 수정 -> 해당 권한을 가진 member만 수정 가능
+    // 3. 게시글 삭제 -> 해당 member id로 판별
+    // 4. 게시글 검색 -> 연관된 제목으로 검색
 
     @PersistenceContext // EntityManager를 주입받기 위해 사용
     private final EntityManager em;
@@ -30,7 +34,14 @@ public class BoardRepository {
     public void delete(Board board) {
         em.remove(board);
     }
-    public List<Board> findByBoardId(String title){ // 제목으로 게시글 검색
+    public void deleteById(Long id) { // 해당 게시글 id로 삭제함
+        Board board = em.find(Board.class, id);
+        if (board != null) {
+            em.remove(board);
+        }
+    }
+
+    public List<Board> findByTitle(String title){ // 제목으로 게시글 검색
         return em.createQuery("select b from Board b where b.title=:title", Board.class)
                 .setParameter("title", title)
                 .getResultList();
