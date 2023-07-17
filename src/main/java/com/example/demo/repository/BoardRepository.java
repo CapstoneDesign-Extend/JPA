@@ -15,10 +15,6 @@ public class BoardRepository {
     @PersistenceContext // EntityManager를 주입받기 위해 사용
     private final EntityManager em;
 
-//    public MemberRepository(EntityManager em) {
-//        this.em = em;
-//    }
-
     public void save(Board board){ // 게시글 저장
         em.persist(board);
     }

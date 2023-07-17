@@ -17,3 +17,29 @@ logging.level:
   org.hibernate.SQL: debug # JPA와 하이버네이트가 생성한 쿼리가 다 보이게 함 # log를 통해
   org.hibernate.type: trace #스프링 부트 2.x, hibernate5
 # org.hibernate.orm.jdbc.bind: trace #스프링 부트 3.x, hibernate6
+
+
+
+#spring:
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://localhost:8080/extends?useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+#    username: root
+#    password: root
+#
+#
+#  jpa:
+#    open-in-view: true
+#    hibernate:
+#      ddl-auto: create
+#      naming:
+#        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+#      use-new-id-generator-mappings: false
+#    show-sql: true
+#    properties:
+#      hibernate.format_sql: true
+#      dialect: org.hibernate.dialect.MySQL8InnoDBDialect
+#
+#logging:
+#  level:
+#    org.hibernate.SQL: debug

@@ -40,4 +40,9 @@ public class Member { // 회원 클래스
     public void addComment(Comment comment){ //-- 작성된 댓글 저장 --//
         this.comments.add(comment);
     }
+
+    public Member(Long id) {
+        this.id = id;
+    }
+    public Member(){}
 }
