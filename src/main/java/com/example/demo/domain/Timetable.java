@@ -26,6 +26,4 @@ public class Timetable { // 시간표
     @JoinColumn(name = "member_id") // 외래키 설정
     private Member member; // 한 명의 사용자는 여러 시간표를 가질 수 있음
 
-    //-- 연관관계 편의 메소드 --//
-
 }
