@@ -41,6 +41,7 @@ public class Member { // 회원 클래스
         this.comments.add(comment);
     }
 
+    //-- 생서자 종류 --//
     public Member(Long id) {
         this.id = id;
     }

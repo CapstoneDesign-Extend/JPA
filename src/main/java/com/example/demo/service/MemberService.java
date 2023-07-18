@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.domain.Comment;
 import com.example.demo.domain.Member;
 import com.example.demo.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,14 @@ import java.util.List;
 //@AllArgsConstructor // 현재 클래스가 가지고 있는 필드를 가지고 생성자를 만들어줌
 @RequiredArgsConstructor // 현재 클래스가 가지고 있는 필드 중 private final 필드만을 가지고 생성자를 만들어줌
 public class MemberService {
+
+    // 회원가입 -> 중복 체크 ok
+    // 회원 알림 확인 -> notification 객체 생성?
+    // 회원이 작성한 게시글 조회
+    // 회원이 작성한 댓글 조회
+    // 회원 정보 확인
+
+
 
     private final MemberRepository memberRepository;
 //    @Autowired // 클래스 간의 의존관계를 스프링 컨테이너가 자동으로 연결해줌
@@ -41,13 +50,22 @@ public class MemberService {
 
     }
     /**
-     *  회원 전체 조회
+     *  회원 id로 조회된 모든 댓글 조회
+     */
+    public List<Comment> findCommentsByMemberId(Member member){
+        List<Comment> comments = memberRepository.findCommentsByMemberId(member.getId());
+
+        return comments;
+    }
+
+    /**
+     *  회원 전체 조회 - 관리자 권한
      */
     public List<Member> findMembers(){
         return memberRepository.findAll();
     }
     /**
-     *  회원 단권 조회
+     *  회원 단권 조회 - 관리자 권한
      */
     public Member findOne(Long memberId){
         return memberRepository.findOne(memberId);

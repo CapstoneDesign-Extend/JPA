@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 @Repository
 @RequiredArgsConstructor
@@ -64,12 +65,12 @@ public class CommentRepository {
 //        return query.getResultList().stream().findFirst();
 //    }
 
-    public List<Comment> findByMember(Member member) {
-        // 멤버로 댓글 목록 조회
+    public List<Comment> findByMember(Member member) { // 멤버로 댓글 목록 조회
         Query query = em.createQuery("SELECT c FROM Comment c WHERE c.member = :member");
         query.setParameter("member", member);
         return query.getResultList();
     }
+
 
     public List<Comment> findByContentContaining(String content) {
         // 내용에 특정 문자열을 포함하는 댓글 목록 조회

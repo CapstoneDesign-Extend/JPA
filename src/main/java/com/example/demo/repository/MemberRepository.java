@@ -1,12 +1,14 @@
 package com.example.demo.repository;
 
 
+import com.example.demo.domain.Comment;
 import com.example.demo.domain.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,6 +47,11 @@ public class MemberRepository { // repository 패키지는 DB에 접근하는 �
                 .filter(m -> m.getLongId().equals(loginId))
                 .findFirst();
     }
-
+    public List<Comment> findCommentsByMemberId(Long memberId) { // 멤버 ID를 매개변수로 받아 해당 멤버와 연결된 댓글 목록을 조회
+        String jpql = "SELECT c FROM Member m JOIN m.comments c WHERE m.id = :memberId";
+        TypedQuery<Comment> query = em.createQuery(jpql, Comment.class);
+        query.setParameter("memberId", memberId);
+        return query.getResultList();
+    }
 
 }

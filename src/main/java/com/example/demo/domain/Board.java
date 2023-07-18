@@ -35,4 +35,13 @@ public class Board { // 게시판 클래스
     @OneToMany(mappedBy = "board")
     private List<File> files = new ArrayList<>();
 
+
+    //== 생성 메소드 --//
+    public static Board createBoard(Kind kind){ // 어떤 게시판의 게시글인지 알기 위해 사용
+        Board board = new Board();
+        board.setKind(kind);
+
+        return board;
+    }
+
 }
