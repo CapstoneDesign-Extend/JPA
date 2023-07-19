@@ -57,13 +57,6 @@ public class CommentRepository {
         return query.getResultList();
     }
 
-//    public Optional<Comment> findByIdAndMember(Long commentId, Member member) {
-//        // ID와 멤버로 댓글 조회
-//        Query query = em.createQuery("SELECT c FROM Comment c WHERE c.id = :commentId AND c.member = :member");
-//        query.setParameter("commentId", commentId);
-//        query.setParameter("member", member);
-//        return query.getResultList().stream().findFirst();
-//    }
 
     public List<Comment> findByMember(Member member) { // 멤버로 댓글 목록 조회
         Query query = em.createQuery("SELECT c FROM Comment c WHERE c.member = :member");
@@ -71,6 +64,9 @@ public class CommentRepository {
         return query.getResultList();
     }
 
+    public Comment findById(Long commentId) { // 댓글 ID로 댓글 조회
+        return em.find(Comment.class, commentId);
+    }
 
     public List<Comment> findByContentContaining(String content) {
         // 내용에 특정 문자열을 포함하는 댓글 목록 조회

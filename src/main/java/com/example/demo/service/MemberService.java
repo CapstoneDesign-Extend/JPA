@@ -11,8 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-@Transactional(readOnly = true) // 조회 시 readOnly = true 해당 속성을 주면 최적화됨
-//@AllArgsConstructor // 현재 클래스가 가지고 있는 필드를 가지고 생성자를 만들어줌
+@Transactional
 @RequiredArgsConstructor // 현재 클래스가 가지고 있는 필드 중 private final 필드만을 가지고 생성자를 만들어줌
 public class MemberService {
 
@@ -21,8 +20,6 @@ public class MemberService {
     // 회원이 작성한 게시글 조회
     // 회원이 작성한 댓글 조회
     // 회원 정보 확인
-
-
 
     private final MemberRepository memberRepository;
 //    @Autowired // 클래스 간의 의존관계를 스프링 컨테이너가 자동으로 연결해줌
@@ -52,6 +49,7 @@ public class MemberService {
     /**
      *  회원 id로 조회된 모든 댓글 조회
      */
+    @Transactional(readOnly = true)
     public List<Comment> findCommentsByMemberId(Member member){
         List<Comment> comments = memberRepository.findCommentsByMemberId(member.getId());
 
@@ -61,12 +59,15 @@ public class MemberService {
     /**
      *  회원 전체 조회 - 관리자 권한
      */
+    @Transactional(readOnly = true)
     public List<Member> findMembers(){
         return memberRepository.findAll();
     }
+
     /**
      *  회원 단권 조회 - 관리자 권한
      */
+    @Transactional(readOnly = true)
     public Member findOne(Long memberId){
         return memberRepository.findOne(memberId);
     }
