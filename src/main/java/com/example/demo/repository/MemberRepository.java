@@ -44,7 +44,7 @@ public class MemberRepository { // repository 패키지는 DB에 접근하는 �
     public Optional<Member> findByLoginId(String loginId) { //-- logId 필드로 찾고 해당 결과 반환 --//
 
         return findAll().stream()
-                .filter(m -> m.getLongId().equals(loginId))
+                .filter(m -> m.getLoginId().equals(loginId))
                 .findFirst();
     }
     public List<Comment> findCommentsByMemberId(Long memberId) { // 멤버 ID를 매개변수로 받아 해당 멤버와 연결된 댓글 목록을 조회

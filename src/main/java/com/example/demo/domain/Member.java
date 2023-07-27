@@ -21,8 +21,8 @@ public class Member { // 회원 클래스
     private String schoolName; // 회원 학교
     @Enumerated(EnumType.STRING) // 데이터값을 int가 아닌 String으로 나오게 함
     private Access access; // 주어질 권한
-    private String longId; // 로그인 시 아이디
-    private String longPwd; // 로그인 시 비밀번호
+    private String loginId; // 로그인 시 아이디
+    private String password; // 로그인 시 비밀번호
     @OneToMany(mappedBy = "member") // mappedBy : 연관관계 주인이 누구인지 상태 테이블 속성이름으로 명시해줌
     private List<Board> board = new ArrayList<>();
     @OneToMany(mappedBy = "member") // mappedBy : 연관관계 주인이 누구인지 상태 테이블 속성이름으로 명시해줌
@@ -41,7 +41,7 @@ public class Member { // 회원 클래스
         this.comments.add(comment);
     }
 
-    //-- 생서자 종류 --//
+    //-- 생성자 종류 --//
     public Member(Long id) {
         this.id = id;
     }
